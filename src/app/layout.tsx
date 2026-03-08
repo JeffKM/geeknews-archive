@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'NextJS Starter - 모던 웹 스타터킷',
+  title: 'Invoice Web Viewer',
   description:
-    'Next.js 15, TypeScript, TailwindCSS, ShadcnUI로 구축된 프로덕션 준비가 완료된 웹 애플리케이션 스타터킷',
+    '노션에서 입력한 견적서 데이터를 클라이언트가 고유 URL로 웹에서 확인하고 PDF로 다운로드하는 서비스',
 }
 
 export default function RootLayout({
