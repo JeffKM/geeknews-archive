@@ -18,7 +18,10 @@
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "playwright"
+    "playwright",
+    "context7",
+    "sequential-thinking",
+    "shadcn"
   ],
   "hooks": {
     "Notification": [
