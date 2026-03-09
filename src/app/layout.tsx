@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 const notoSansKR = Noto_Sans_KR({
   variable: '--font-noto-sans-kr',
-  subsets: ['latin', 'korean'],
+  subsets: ['latin'],
   weight: ['400', '500', '700'],
 })
 

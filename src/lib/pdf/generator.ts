@@ -45,6 +45,17 @@ export async function generatePdf(url: string): Promise<ArrayBuffer> {
       timeout: 30000,
     })
 
+    // next/font는 latin subset 파일만 자체 호스팅 → Puppeteer 환경에서 한글 표시 불가
+    // Google Fonts에서 한글 포함 폰트를 직접 주입
+    await page.addStyleTag({
+      url: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=block',
+    })
+
+    // next/font의 CSS 변수 기반 폰트 패밀리를 덮어써 모든 요소에 한글 폰트 적용
+    await page.addStyleTag({
+      content: `body, body * { font-family: 'Noto Sans KR', sans-serif !important; }`,
+    })
+
     // 폰트가 완전히 로드·적용될 때까지 대기
     await page.evaluate(() => document.fonts.ready)
 
