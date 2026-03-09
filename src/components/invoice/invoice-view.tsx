@@ -6,6 +6,7 @@ import { InvoiceInfo } from '@/components/invoice/invoice-info'
 import { InvoiceItems } from '@/components/invoice/invoice-items'
 import { InvoiceSummarySection } from '@/components/invoice/invoice-summary'
 import { InvoiceFooter } from '@/components/invoice/invoice-footer'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 interface InvoiceViewProps {
   invoice: InvoiceData
@@ -21,6 +22,11 @@ export function InvoiceView({ invoice }: InvoiceViewProps) {
 
   return (
     <main className="bg-muted/30 min-h-screen py-8 print:bg-white print:py-0">
+      {/* 다크 모드 토글 버튼 (우측 상단 고정, 인쇄 시 숨김) */}
+      <div className="fixed top-4 right-4 z-50 print:hidden">
+        <ThemeToggle />
+      </div>
+
       <article
         className="bg-card sm:border-border mx-auto w-full max-w-2xl space-y-7 px-6 py-10 shadow-sm sm:rounded-2xl sm:border sm:px-10 sm:py-12 print:shadow-none"
         aria-label="견적서"

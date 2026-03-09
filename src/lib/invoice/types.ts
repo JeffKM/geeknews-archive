@@ -51,6 +51,17 @@ export interface InvoiceData {
   notes?: string // 특이사항
 }
 
+/** 견적서 목록 표시용 경량 타입 (관리자 대시보드) */
+export interface InvoiceListItem {
+  id: string // 노션 페이지 ID (URL 파라미터)
+  invoiceNumber: string // 견적서 번호 (예: INV-2026-001)
+  title: string // 견적서 제목
+  status: InvoiceStatus // 현재 상태
+  clientName: string // 고객사명
+  issuedAt: string // 발행일 (ISO 8601 날짜 문자열)
+  total: number // 총액 (원)
+}
+
 /** API 응답 래퍼 타입 */
 export type ApiResponse<T> =
   | { success: true; data: T }

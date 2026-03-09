@@ -40,6 +40,11 @@ export async function generatePdf(url: string): Promise<ArrayBuffer> {
     // A4 너비(794px)에 맞게 뷰포트 설정
     await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 })
 
+    // PDF 생성 시 다크 모드 영향 차단: prefers-color-scheme을 light로 강제
+    await page.emulateMediaFeatures([
+      { name: 'prefers-color-scheme', value: 'light' },
+    ])
+
     await page.goto(url, {
       waitUntil: 'networkidle0',
       timeout: 30000,
