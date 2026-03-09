@@ -15,6 +15,16 @@ export async function GET(
 ) {
   const { id } = await context.params
 
+  // UUID 형식이 아닌 ID는 Notion 조회 없이 즉시 차단
+  const UUID_REGEX =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+  if (!UUID_REGEX.test(id)) {
+    return NextResponse.json(
+      { success: false, error: '견적서를 찾을 수 없습니다.' },
+      { status: 404 }
+    )
+  }
+
   try {
     // 견적서 데이터 조회 (존재 여부 검증 및 파일명 생성용)
     const invoice = await getInvoiceById(id)

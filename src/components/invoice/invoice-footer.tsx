@@ -45,14 +45,18 @@ export function InvoiceFooter({ invoice }: InvoiceFooterProps) {
         )}
       </div>
 
-      {/* PDF 다운로드 버튼 - 인쇄 시 숨김 처리 */}
-      <div className="flex justify-end print:hidden">
-        <PdfDownloadButton
-          invoiceId={id}
-          invoiceNumber={invoiceNumber}
-          clientName={client.companyName}
-        />
-      </div>
+      {/* PDF 다운로드 버튼 - 실제 Notion 견적서(UUID)일 때만 표시, 인쇄 시 숨김 */}
+      {/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(
+        id
+      ) && (
+        <div className="flex justify-end print:hidden">
+          <PdfDownloadButton
+            invoiceId={id}
+            invoiceNumber={invoiceNumber}
+            clientName={client.companyName}
+          />
+        </div>
+      )}
     </footer>
   )
 }
