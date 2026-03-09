@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+
 /**
  * 루트 페이지
  * MVP에서는 미사용 - 견적서 목록 페이지 미구현 상태
@@ -18,6 +21,11 @@ export default function RootPage() {
         <p className="text-muted-foreground/70 text-sm">
           형식: /invoice/[견적서-ID]
         </p>
+        <Link href="/invoice/demo">
+          <Button variant="outline" size="sm">
+            견적서 데모 보기
+          </Button>
+        </Link>
       </div>
     </main>
   )
