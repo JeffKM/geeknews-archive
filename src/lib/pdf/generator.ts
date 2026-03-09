@@ -14,11 +14,15 @@ export async function generatePdf(url: string): Promise<ArrayBuffer> {
     let launchOptions: Parameters<typeof puppeteer.default.launch>[0]
 
     if (process.env.VERCEL) {
-      // Vercel 서버리스 환경
+      // Vercel 서버리스 환경: 바이너리를 원격에서 다운로드 후 /tmp에 캐시
+      // (chromium.br이 59MB로 Hobby 플랜 50MB 번들 제한 초과 → 번들 포함 불가)
       const chromium = await import('@sparticuz/chromium')
+      const chromiumPackUrl =
+        process.env.CHROMIUM_PACK_URL ??
+        'https://github.com/Sparticuz/chromium/releases/download/v143.0.4/chromium-v143.0.4-pack.x64.tar'
       launchOptions = {
         args: chromium.default.args,
-        executablePath: await chromium.default.executablePath(),
+        executablePath: await chromium.default.executablePath(chromiumPackUrl),
         headless: true,
       }
     } else {

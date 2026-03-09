@@ -10,10 +10,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
-    // @ts-expect-error - Next.js 타입 정의 누락, 런타임에 지원됨 (Vercel 배포 시 chromium 바이너리 포함)
-    outputFileTracingIncludes: {
-      '/api/invoice/[id]/pdf': ['./node_modules/@sparticuz/chromium/**/*'],
-    },
   },
   async headers() {
     return [
